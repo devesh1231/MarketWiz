@@ -11,7 +11,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
                 console.log(decoded);
                 const user = await User.findById(decoded?.id);
-                console.log(user);
+             //   console.log(user);
                 req.user = user;
                 next(); // Call next only if the token verification is successful
             }
@@ -29,8 +29,8 @@ module.exports = { authMiddleware };
 
 const isAdmin = asyncHandler(async (req, res, next) => { // Added the 'next' parameter
     // You can access the user information stored in req.user here
-    console.log("hii");
-    console.log(req.user);
+  //  console.log("hii");
+    //console.log(req.user);
     const { email } = req.user;
     const adminUser = await User.findOne({ email });
     if (adminUser.role !== "admin") {
